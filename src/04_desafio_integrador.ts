@@ -69,7 +69,7 @@ export interface ResumenFinanciero {
  * 
  * Todos los valores numéricos deben retornar redondeados a 2 decimales: Number(val.toFixed(2)).
  */
-export function calcularTotalesPedido(pedido: PedidoMovil): ResumenFinanciero {
+ export function calcularTotalesPedido(pedido: PedidoMovil): ResumenFinanciero {
   const subtotal = pedido.detalles.reduce(
     (acum, item) => acum + item.producto.precioUnitario * item.cantidad,
     0
@@ -87,7 +87,6 @@ export function calcularTotalesPedido(pedido: PedidoMovil): ResumenFinanciero {
     totalPagar: Number(totalPagar.toFixed(2))
   };
 }
-
 /**
  * Función visual para imprimir el ticket en consola
  */
