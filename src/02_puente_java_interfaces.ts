@@ -33,17 +33,7 @@ public class UsuarioJava {
     }
     // + 25 líneas de Getters y Setters...
 }
-*/
-
-// ============================================================================
-// PASO 1: Define la interface `PerfilUsuario` en TypeScript
-// ============================================================================
-// TODO: Define la interface `PerfilUsuario` con los siguientes campos y modificadores:
-// - `id`: de tipo string e INMUTABLE (usa `readonly`)
-// - `nombreCompleto`: de tipo string
-// - `correo`: de tipo string
-// - `telefono`: de tipo string y OPCIONAL (usa `?`)
-// - `rol`: de tipo literal `"ADMIN" | "DOCENTE" | "ESTUDIANTE"`
+    */
 
 export interface PerfilUsuario {
   readonly id: string;
@@ -53,54 +43,40 @@ export interface PerfilUsuario {
   rol: "ADMIN" | "DOCENTE" | "ESTUDIANTE";
 }
 
-// TODO: Completa la variable constante `usuarioEjemplo` asignando valores válidos:
 export const usuarioEjemplo: PerfilUsuario = {
   id: "UETS-2026-001",
-  nombreCompleto: "",                                // 👈 TODO: Llena tu nombre completo
-  correo: "estudiante@est.salesianos.edu.ec",        // 👈 TODO: Tu correo institucional
+  nombreCompleto: "Angélica Cristina Durán Ordonez",                  
+  correo: "angelica.durano.est@uets.edu.ec",
   rol: "ESTUDIANTE"
 };
 
-/**
- * TODO: Implementa `formatearPerfilUsuario`.
- * Formato requerido:
- * `[PERFIL] ID (ROL): NOMBRE - CORREO`
- * (Ejemplo: `[PERFIL] UETS-2026-001 (ESTUDIANTE): Carlos Andrade - carlos@est.salesianos.edu.ec`)
- */
+
 export function formatearPerfilUsuario(usuario: PerfilUsuario): string {
-  // 👇 TODO: Escribe tu lógica con Template Strings y reemplaza el return "":
-  return "";
+  return `[PERFIL] ${usuario.id} (${usuario.rol}): ${usuario.nombreCompleto} - ${usuario.correo}`;
 }
 
-// ============================================================================
-// PASO 2: Interface `ProductoItem` y Función de Descuento
-// ============================================================================
-// TODO: Define la interface `ProductoItem` con:
-// - `id`: string (readonly)
-// - `titulo`: string
-// - `precio`: number
-// - `disponible`: boolean
-// - `descuentoPorcentaje`: number (opcional ?)
+
 
 export interface ProductoItem {
   readonly id: string;
-  titulo: string;
-  precio: number;
-  disponible: boolean;
-  descuentoPorcentaje?: number;
+titulo: string
+precio: number
+disponible: boolean
+descuentoPorcentaje?: number
 }
 
-/**
- * TODO: Implementa la función `calcularPrecioFinal`.
- * Reglas:
- * 1. Si el producto NO está disponible (`!producto.disponible`), retornar 0.
- * 2. Si tiene `descuentoPorcentaje` mayor a 0, restar ese porcentaje al precio original:
- *    descuento = producto.precio * (producto.descuentoPorcentaje / 100)
- *    precioFinal = producto.precio - descuento
- * 3. Si no tiene descuento o es 0, retornar el precio original.
- * 4. Retornar el número redondeado a 2 decimales: Number(precioFinal.toFixed(2)).
- */
+
 export function calcularPrecioFinal(producto: ProductoItem): number {
-  // 👇 TODO: Escribe tu lógica aquí y reemplaza el return 0:
-  return 0;
+  if (!producto.disponible) {
+    return 0;
+  }
+
+  let precioFinal: number = producto.precio;
+
+  if (producto.descuentoPorcentaje && producto.descuentoPorcentaje > 0) {
+    const descuento = producto.precio * (producto.descuentoPorcentaje / 100);
+    precioFinal = producto.precio - descuento;
+  }
+
+  return Number(precioFinal.toFixed(2));
 }
